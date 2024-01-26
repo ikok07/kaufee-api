@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "cfd7875b-bed1-46fa-963d-370c74ac1216",
+		"name": "Business",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25235245",
+		"_collection_link": "https://crimson-rocket-83903.postman.co/workspace/Software-Fest~8fa480a1-bbe9-4f1e-9a4e-b43ee3f0a084/collection/25235245-cfd7875b-bed1-46fa-963d-370c74ac1216?action=share&source=collection_link&creator=25235245"
+	},
+	"item": [
+		{
+			"name": "Get all businesses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all businesses for specific user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653ccb7bc2f9fe1463db0987/business",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653ccb7bc2f9fe1463db0987",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one business",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business/653cfc92909c804fd65709d5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business",
+						"653cfc92909c804fd65709d5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create one business, first option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Adidas\",\n    \"description\": \"Very nice business!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create one business, second option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Teenovator\",\n    \"description\": \"Very nice business!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update one business, first option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Teenovator\",\n    \"description\": \"Teenovator 123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cd5df0816c6d6e84249cc",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cd5df0816c6d6e84249cc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update one business, second option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nikeee\",\n    \"description\": \"Very nice business!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business/653cc1be2e60318c783bd66b",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business",
+						"653cc1be2e60318c783bd66b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete one business, first option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Adibas\",\n    \"description\": \"Very bad business!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business/653cd294ee6c786dbc86fd4b",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business",
+						"653cd294ee6c786dbc86fd4b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete one business, second option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Adibas\",\n    \"description\": \"Very bad business!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653ccc14c2f9fe1463db09b3",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653ccc14c2f9fe1463db09b3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

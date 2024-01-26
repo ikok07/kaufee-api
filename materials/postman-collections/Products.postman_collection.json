@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "2dc86baf-7e6d-4d21-8c98-af17e602b7eb",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25235245",
+		"_collection_link": "https://crimson-rocket-83903.postman.co/workspace/Software-Fest~8fa480a1-bbe9-4f1e-9a4e-b43ee3f0a084/collection/25235245-2dc86baf-7e6d-4d21-8c98-af17e602b7eb?action=share&source=collection_link&creator=25235245"
+	},
+	"item": [
+		{
+			"name": "Get all products, first option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cf68d5813b8ad3a67a917/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all products, second option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business/653cf68d5813b8ad3a67a917/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one product, first option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cf68d5813b8ad3a67a917/products/653d0537508a4f9b2aefe3e5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products",
+						"653d0537508a4f9b2aefe3e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one product, second option",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/business/653cf68d5813b8ad3a67a917/products/653d0537508a4f9b2aefe3e5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products",
+						"653d0537508a4f9b2aefe3e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create one product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Boots\",\n    \"description\": \"Super fancy boots!\",\n    \"price\": 21.99,\n    \"currency\": \"bgn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cf68d5813b8ad3a67a917/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update one product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Second-hand boots\",\n    \"description\": \"Super fancy boots!\",\n    \"price\": 23.99,\n    \"currency\": \"bgn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cf68d5813b8ad3a67a917/products/653d0cff193068ffc4e69256",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products",
+						"653d0cff193068ffc4e69256"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete one product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Second-hand boots\",\n    \"description\": \"Super fancy boots!\",\n    \"price\": 21.99,\n    \"currency\": \"bgn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/653c16770aa9c93aa68b02ac/business/653cf68d5813b8ad3a67a917/products/653d0d36193068ffc4e6925e",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"653c16770aa9c93aa68b02ac",
+						"business",
+						"653cf68d5813b8ad3a67a917",
+						"products",
+						"653d0d36193068ffc4e6925e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

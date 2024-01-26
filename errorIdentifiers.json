@@ -1,0 +1,15 @@
+{
+  "EmailNotVerified": "The user has been successfully authenticated, but the email belonging to this user has not been verified",
+  "IncorrectCredentials": "The user attempted to log in with an incorrect password or an email address.",
+  "EmailAlreadyExists": "The email provided is already in use by another active user.",
+  "UserNotFound": "The user corresponding to the provided email does not exist.",
+  "InvalidToken": "The token provided is not valid.",
+  "EmailAlreadyConfirmed": "The email belonging to this user has already been verified.",
+  "NoEmailOrPassword": "No email or password provided.",
+  "NoPermission": "The user has no permission to perform this action.",
+  "NotLoggedIn": "The user is not logged in.",
+  "RecentlyChangedPassword": "The user has recently changed their password.",
+  "InvalidId": "The provided id is not valid.",
+  "NoDocumentWithThisId": "No document with this id exists.",
+  "NoDocumentWithThisIdForThisUser": "No document with this id exists for this user."
+}

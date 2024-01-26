@@ -1,0 +1,21 @@
+# NodeJS
+
+# Assets (Processed images and videos)
+# Images
+/public/images/*
+!/public/images/.gitkeep
+/public/images/*
+!/public/images/.gitkeep
+/public/images/*
+!/public/images/.gitkeep
+
+# Videos
+/public/videos/*
+!/public/videos/.gitkeep
+/public/videos/*
+!/public/videos/.gitkeep
+
+# Node modules
+/node_modules/
+
+config.env

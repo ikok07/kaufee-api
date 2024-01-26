@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "3cbcaeb8-34e2-47f3-b8b3-2b0fb44627ee",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25235245",
+		"_collection_link": "https://crimson-rocket-83903.postman.co/workspace/Software-Fest~8fa480a1-bbe9-4f1e-9a4e-b43ee3f0a084/collection/25235245-3cbcaeb8-34e2-47f3-b8b3-2b0fb44627ee?action=share&source=collection_link&creator=25235245"
+	},
+	"item": [
+		{
+			"name": "Get me",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/me",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user password by current password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"currentPassword\": \"123Prudni@\",\n    \"newPassword\": \"123Prudni@2\",\n    \"newPasswordConfirm\": \"123Prudni@2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/updatePassword",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update photo or (and) name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Martin Georgiev",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/Users/macos/MEGA/MEGAsync/fthub-resources/assets/profile-pictures/test-4.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/me",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user password by current password Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Martin Georgiev",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/Users/macos/MEGA/MEGAsync/fthub-resources/assets/profile-pictures/test-4.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/me",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Martin Georgiev\",\r\n    \"email\": \"gamersend77@gmail.com\",\r\n    \"password\": \"123Prudni@\",\r\n    \"passwordConfirm\": \"123Prudni@\",\r\n    \"role\": \"customer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v2/user/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v2",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email confirm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"gamersend77@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v2/user/email/confirm/00d03414d21df39427cdce2ad18b7fc146574e4d90253a49ea072879f1a5f5e5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v2",
+						"user",
+						"email",
+						"confirm",
+						"00d03414d21df39427cdce2ad18b7fc146574e4d90253a49ea072879f1a5f5e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resend email confirm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgievmarti21@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v2/user/email/resend",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v2",
+						"user",
+						"email",
+						"resend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgievmarti21@gmail.com\",\r\n    \"password\": \"123Prudni@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v2/user/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v2",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TwoFa confirm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgievmarti21@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v2/user/login/confirm/08a0b7c0cc03ea5a7286616fc5006bca68e99c34afdf1ff25c76af8c568382fd",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v2",
+						"user",
+						"login",
+						"confirm",
+						"08a0b7c0cc03ea5a7286616fc5006bca68e99c34afdf1ff25c76af8c568382fd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgievmarti21@gmail.com\",\r\n    \"password\": \"123Prudni@aa\",\r\n    \"passwordConfirm\": \"123Prudni@aa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/password/reset/9b62f7c9e010584790205a1e299e0d90b4bc0f827a6d49a28257b5739f374f0d",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"password",
+						"reset",
+						"9b62f7c9e010584790205a1e299e0d90b4bc0f827a6d49a28257b5739f374f0d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request reset password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgievmarti21@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{LANG}}/api/v1/user/password/reset",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{LANG}}",
+						"api",
+						"v1",
+						"user",
+						"password",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
