@@ -62,7 +62,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 
   if (req.file) {
     const photoPath = await imageResize(product._id, req.file.buffer, 'product');
-    product.photo = `https://${process.env.DOMAIN}${photoPath}`;
+    product.photo = `https://${process.env.ASSET_SERVER_DOMAIN}${photoPath}`;
     await product.save();
   }
 
@@ -92,7 +92,7 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 
   if (req.file) {
     const photoPath = await imageResize(product._id, req.file.buffer, 'product');
-    product.photo = `https://${process.env.DOMAIN}${photoPath}`;
+    product.photo = `https://${process.env.ASSET_SERVER_DOMAIN}${photoPath}`;
     await product.save();
   }
 

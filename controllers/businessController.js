@@ -54,7 +54,7 @@ exports.createBusiness = catchAsync(async (req, res, next) => {
 
   if (req.file) {
     const photoPath = await imageResize(business._id, req.file.buffer, 'business');
-    business.photo = `https://${process.env.DOMAIN}${photoPath}`;
+    business.photo = `https://${process.env.ASSET_SERVER_DOMAIN}${photoPath}`;
     await business.save();
   }
 
@@ -97,7 +97,7 @@ exports.updateBusiness = catchAsync(async (req, res, next) => {
 
   if (req.file) {
     const photoPath = await imageResize(newBusiness._id, req.file.buffer, 'business');
-    business.photo = `https://${process.env.DOMAIN}${photoPath}`;
+    business.photo = `https://${process.env.ASSET_SERVER_DOMAIN}${photoPath}`;
     await business.save();
   }
 

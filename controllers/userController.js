@@ -16,7 +16,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 
   const { absolutePath } = await imageProcess(req.file.buffer, getOutputDirectory(process.env.NODE_ENV, 'img', 'profile-images'), `user-${req.user.id}-${Date.now()}.jpeg`);
 
-  req.file.absolutePath = `https://${process.env.DOMAIN}${absolutePath}`;
+  req.file.absolutePath = `https://${process.env.ASSET_SERVER_DOMAIN}${absolutePath}`;
   next();
 });
 

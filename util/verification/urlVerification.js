@@ -36,9 +36,7 @@ exports.createSendVerificationToken = async function (user, messages, tokenType,
   else if (tokenType === 'twoFa') urlMiddle = 'login/confirm';
 
   try {
-    const url = `${process.env.NODE_ENV === 'development' ? `http://localhost:${process.env.PORT}` : `https://${process.env.DOMAIN}`}/${
-      req.language
-    }/${urlMiddle}/${code}`;
+    const url = `${process.env.NODE_ENV === 'development' ? `http://localhost:${process.env.PORT}` : `https://${process.env.DOMAIN}`}/${req.language}/${urlMiddle}/${code}`;
     await new Email(user, req.language, url, code)[`send${firstLetterCapitalizedTokenType}Url`]();
 
     const auditLogObject = createAuditLogObject(
