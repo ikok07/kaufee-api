@@ -10,12 +10,14 @@ const AppError = require('./util/appError');
 const identifyLanguage = require('./languages/identifyLanguage');
 const initGeolocationObject = require('./util/geolocation/initGeolocationObject');
 const globalErrorHandler = require('./controllers/errorController');
+const scheduleController = require('./controllers/scheduleController');
 
 const userRouterV1 = require('./routes/userRoutes');
 const userRouterV2 = require('./routes/userRoutesV2');
 const businessRouter = require('./routes/businessRoutes');
 const paymentRouter = require('./routes/paymentRoutes');
 const defaultIndexRouter = require('./routes/defaultIndexRoutes');
+const schedule = require('node-schedule');
 
 const getMessages = require('./languages/getMessages');
 
@@ -47,6 +49,10 @@ app.use(
 );
 
 app.use(compression());
+
+if (process.env.NODE_ENV === 'production') {
+  schedule.scheduleJob('0 06 * * *', scheduleController.refreshWeeklyAppleClientSecret);
+}
 
 app.use('/:lang/api/v1/user', userRouterV1);
 app.use('/:lang/api/v2/user', userRouterV2);

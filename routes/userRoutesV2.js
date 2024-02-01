@@ -4,7 +4,7 @@ const urlVerification = require('../util/verification/urlVerification');
 
 const router = express.Router();
 
-router.post('/signup', authController.signup(urlVerification));
+router.post('/signup/basic', authController.signup(urlVerification));
 router.post('/email/confirm/:token', authController.emailConfirm(urlVerification));
 router.post('/email/resend', authController.resendEmailConfirmationToken(urlVerification));
 

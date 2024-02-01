@@ -4,6 +4,12 @@ const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema(
   {
+    oauthProviderUserId: {
+      type: String,
+      required: function () {
+        return this.oauthProvider !== 'local';
+      },
+    },
     name: {
       type: String,
       required: [true, 'Please tell us your name!'],
@@ -13,6 +19,7 @@ const userSchema = new mongoose.Schema(
       required: [true, 'Please provide your email.'],
       lowercase: true,
       validate: [validator.isEmail, 'Please provide a valid email.'],
+      unique: true,
     },
     photo: {
       type: String,
@@ -25,7 +32,9 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Please provide a password'],
+      required: function () {
+        return this.oauthProvider === 'local';
+      },
       select: false,
       validate: [
         {
@@ -62,7 +71,9 @@ const userSchema = new mongoose.Schema(
     },
     passwordConfirm: {
       type: String,
-      required: [true, 'Please confirm your password'],
+      required: function () {
+        return this.oauthProvider === 'local';
+      },
       validate: {
         validator: function (el) {
           return el === this.password;
@@ -70,19 +81,34 @@ const userSchema = new mongoose.Schema(
         message: 'Passwords are not the same!',
       },
     },
-    active: {
-      type: Boolean,
-      default: true,
-      select: false,
+    refreshToken: {
+      type: String,
+      required: function () {
+        return this.oauthProvider === 'apple';
+      },
+    },
+    oauthProvider: {
+      type: String,
+      enum: ['google', 'apple', 'local'],
+      default: 'local',
+      required: true,
     },
     metadata: {
       creation: {
         type: Date,
         default: new Date(),
       },
+      emailNotifications: {
+        type: Boolean,
+        default: true,
+      },
       emailVerified: {
         type: Boolean,
         default: false,
+      },
+      deviceTokens: {
+        type: [String],
+        default: [],
       },
       passwordChangedAt: Date,
     },

@@ -11,8 +11,10 @@ const AuditLog = require('../models/auditLogModel');
 const createAuditLogObject = require('../util/auditLog/createAuditLogObject');
 const verifyAppleToken = require('verify-apple-id-token').default;
 const { OAuth2Client } = require('google-auth-library');
+const fs = require('fs');
+const { default: axios } = require('axios');
 
-const signToken = id => {
+const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
@@ -39,7 +41,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-exports.signup = verificationObj =>
+exports.signup = (verificationObj) =>
   catchAsync(async (req, res, next) => {
     const messages = getMessages(req.language);
     const body = filterObj(req.body, 'name', 'email', 'role', 'password', 'passwordConfirm');
@@ -47,13 +49,7 @@ exports.signup = verificationObj =>
     const existingUser = await User.findOne({ email: body.email, active: true });
 
     if (existingUser) {
-      const auditLogObject = createAuditLogObject(
-        req,
-        existingUser.id,
-        'fail',
-        { oldValue: null, newValue: null },
-        'There is a user with this email address who is currently active.'
-      );
+      const auditLogObject = createAuditLogObject(req, existingUser.id, 'fail', { oldValue: null, newValue: null }, 'There is a user with this email address who is currently active.');
 
       await AuditLog.create(auditLogObject);
 
@@ -62,13 +58,7 @@ exports.signup = verificationObj =>
 
     const newUser = await User.create(body);
 
-    const auditLogObject = createAuditLogObject(
-      req,
-      null,
-      'processing',
-      { oldValue: null, newValue: newUser },
-      'User successfully created. To be confirmed.'
-    );
+    const auditLogObject = createAuditLogObject(req, null, 'processing', { oldValue: null, newValue: newUser }, 'User successfully created. To be confirmed.');
 
     await AuditLog.create(auditLogObject);
 
@@ -137,17 +127,21 @@ exports.authorizeOAuth2Apple = catchAsync(async (req, res, next) => {
       await new Email(user, req.language).sendWelcome();
     } else {
       user = await User.findOne({ oauthProviderUserId: jwtClaims.sub, email: jwtClaims.email });
-      user.metadata.deviceTokens.push(body.deviceToken);
-      await user.save();
-      await new Email(user, req.language).sendLogInDetected(req.geolocation);
+      if (user) {
+        user.metadata.deviceTokens.push(body.deviceToken);
+        await user.save();
+        await new Email(user, req.language).sendLogInDetected(req.geolocation);
+      } else {
+        return next(new AppError(getMessages(req.language).auth.notExist, 400, 'EmailAlreadyExists'));
+      }
     }
 
     createSendToken(user, 200, res);
   } catch (err) {
     let errorString = err;
-    if (err.response.data) {
-      errorString = JSON.stringify(err.response.data);
-    }
+    // if (err.response.data) {
+    //   errorString = JSON.stringify(err.response.data);
+    // }
     return next(new AppError(`${messages.auth.invalidToken} (${errorString})`, 401, 'InvalidToken'));
   }
 });
@@ -245,7 +239,7 @@ exports.emailConfirm = (verificationObj) =>
     createSendToken(user, 200, res);
   });
 
-exports.resendEmailConfirmationToken = verificationObj =>
+exports.resendEmailConfirmationToken = (verificationObj) =>
   catchAsync(async (req, res, next) => {
     const messages = getMessages(req.language);
     const user = await User.findOne({
@@ -259,7 +253,7 @@ exports.resendEmailConfirmationToken = verificationObj =>
     await verificationObj.createSendVerificationToken(user, messages, 'emailVerification', req, res, next);
   });
 
-exports.login = verificationObj =>
+exports.login = (verificationObj) =>
   catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
     const messages = getMessages(req.language);
@@ -307,7 +301,7 @@ exports.login = verificationObj =>
     await verificationObj.createSendVerificationToken(user, messages, 'twoFa', req, res, next);
   });
 
-exports.twoFaConfirm = verificationObj =>
+exports.twoFaConfirm = (verificationObj) =>
   catchAsync(async (req, res, next) => {
     const messages = getMessages(req.language);
     const user = await User.findOne({
@@ -414,8 +408,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) return next(new AppError(messages.auth.notExist, 401, 'UserNotFound'));
 
-  if (currentUser.changedPasswordAfter(decoded.iat))
-    return next(new AppError(messages.auth.recentlyChangedPassword, 401, 'RecentlyChangedPassword'));
+  if (currentUser.changedPasswordAfter(decoded.iat)) return next(new AppError(messages.auth.recentlyChangedPassword, 401, 'RecentlyChangedPassword'));
 
   req.user = currentUser;
   next();

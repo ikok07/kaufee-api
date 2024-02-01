@@ -7,6 +7,10 @@ const productSchema = new mongoose.Schema(
       ref: 'Business',
       required: [true, 'A product must belong to a business!'],
     },
+    photo: {
+      type: String,
+      default: 'default.jpg',
+    },
     name: {
       type: String,
       required: [true, 'A product must have a name!'],
@@ -28,8 +32,8 @@ const productSchema = new mongoose.Schema(
     },
     metadata: {
       creation: {
-        type: Date,
-        default: new Date(),
+        type: Number,
+        default: Date.now(),
       },
     },
   },

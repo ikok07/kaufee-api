@@ -6,6 +6,10 @@ const businessSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User',
     },
+    photo: {
+      type: String,
+      default: 'default.jpg',
+    },
     name: {
       type: String,
       required: [true, 'A business must have a name!'],
@@ -25,8 +29,8 @@ const businessSchema = new mongoose.Schema(
     ],
     metadata: {
       creation: {
-        type: Date,
-        default: new Date(),
+        type: Number,
+        default: Date.now(),
       },
     },
   },

@@ -1,6 +1,7 @@
 const express = require('express');
 const businessController = require('../controllers/businessController');
 const authController = require('../controllers/authController');
+const uploadSinglePhoto = require('../util/multer/multerSinglePhoto');
 
 const router = express.Router({ mergeParams: true });
 const productsRouter = require('./productRoutes');
@@ -15,7 +16,7 @@ router.get('/:businessId', businessController.getBusiness);
 
 router.use(authController.restrictTo('business'));
 
-router.post('/', businessController.createBusiness);
-router.route('/:businessId').patch(businessController.updateBusiness).delete(businessController.deleteBusiness);
+router.post('/', uploadSinglePhoto, businessController.createBusiness);
+router.route('/:businessId').patch(uploadSinglePhoto, businessController.updateBusiness).delete(businessController.deleteBusiness);
 
 module.exports = router;

@@ -20,6 +20,9 @@ router.post('/login/confirm', authController.twoFaConfirm(tokenVerification));
 router.post('/password/reset', authController.forgotPassword);
 router.patch('/password/reset/:token', authController.resetPassword);
 
+router.post('/oauth2/apple', authController.authorizeOAuth2Apple);
+router.post('/oauth2/google', authController.authorizeOAuth2Google);
+
 router.get('/logout', authController.logout);
 
 router.use(authController.protect);
@@ -28,10 +31,6 @@ router.post('/logout', authController.logout);
 
 router.patch('/updatePassword', authController.updatePassword);
 
-router
-  .route('/me')
-  .get(userController.getMe, userController.getUser)
-  .patch(uploadSinglePhoto, userController.resizeUserPhoto, userController.updateMe)
-  .delete(userController.deleteMe);
+router.route('/me').get(userController.getMe, userController.getUser).patch(uploadSinglePhoto, userController.resizeUserPhoto, userController.updateMe).delete(userController.deleteMe);
 
 module.exports = router;
